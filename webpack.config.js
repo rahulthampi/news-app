@@ -38,7 +38,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loader: 'style-loader!css-loader!sass-loader',
+        loader: 'style-loader!css-loader!autoprefixer-loader!sass-loader',
       },
       {
         test: /\.css$/,
@@ -49,6 +49,13 @@ module.exports = {
 
   resolve: {
     extensions: ['.scss', '.js', '.jsx'],
+    // alias: {
+    //   './components': path.resolve(__dirname, 'src/components/'),
+    //   './containers': path.resolve(__dirname, 'src/container/'),
+    //   './styles': path.resolve(__dirname, 'src/styles/'),
+    //   './common': path.resolve(__dirname, 'src/common/'),
+    //   './utils': path.resolve(__dirname, 'src/utils/'),
+    // },
   },
 
   devServer: {
