@@ -1,0 +1,20 @@
+.sidebar-nav{
+  max-width: 250px;
+  background: whitesmoke;
+  flex: 1;
+  ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    a{
+      display: block;
+      text-decoration: none;
+      li{
+        font-size: 14px;
+        padding: 10px 15px;
+        color: #444;
+        border-bottom: 1px solid #ececec;
+      }
+    }
+  }
+}

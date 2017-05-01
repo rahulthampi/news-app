@@ -1,0 +1,9 @@
+.content-wrapper{
+  display: flex;
+  flex-direction: row;
+  .news-wrapper{
+    background: #f9f9f9;
+    padding: 15px 30px;
+    flex: 1;
+  }
+}

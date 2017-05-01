@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        Hello
-      </div>
-    );
-  }
-}
+import Routes from './routes';
+import configureStore from './store/configureStore';
+
+const store = configureStore();
 
 render(
-  <App />,
+  <Provider store={store}>
+    <Routes />
+  </Provider>,
   document.getElementById('root-container'),
 );

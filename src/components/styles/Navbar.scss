@@ -1,0 +1,13 @@
+.navbar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: darkturquoise;
+  height: 45px;
+  .app-name{
+    color: white;
+    font-size: 18px;
+    font-style: italic;
+    font-family: 'Operator Mono Medium';
+  }
+}
