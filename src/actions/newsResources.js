@@ -4,13 +4,10 @@ export const requestNewsSources = () => ({
   type: actions.REQUEST_NEWS_SOURCES,
 });
 
-export const receivedNewsSources = (sources) => {
-  console.log(sources);
-  return {
-    type: actions.RECEIVED_NEWS_SOURCES,
-    sources,
-  };
-};
+export const receivedNewsSources = sources => ({
+  type: actions.RECEIVED_NEWS_SOURCES,
+  sources,
+});
 
 export const changedNewsSource = () => ({
   type: actions.CHANGED_NEWS_SOURCE,
