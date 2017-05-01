@@ -4,7 +4,7 @@ const webpack = require('webpack');
 module.exports = {
   devtool: 'cheap-module-source-map',
 
-  entry: `${path.resolve(__dirname, 'src')}/index.jsx`,
+  entry: ['babel-polyfill', `${path.resolve(__dirname, 'src')}/index.jsx`],
 
   output: {
     path: path.resolve(__dirname, 'public', '__build__'),
