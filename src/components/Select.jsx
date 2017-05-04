@@ -14,12 +14,13 @@ class Select extends Component {
     this.setState(prevProps => ({
       value: targetValue !== prevProps.value ? targetValue : prevProps.value,
     }));
+    this.props.onChangeHandler(targetValue);
   }
 
-  render() {
+  render = () => {
     const { newsSources } = this.props;
     const Options = newsSources.map(source => (
-      <option key={source} value={source}>{source}</option>
+      <option key={source.id} value={source.id}>{source.name}</option>
     ));
 
     return (
@@ -34,10 +35,11 @@ class Select extends Component {
 
 Select.propTypes = {
   newsSources: PropTypes.array,
+  onChangeHandler: PropTypes.func.isRequired,
 };
 
 Select.defaultProps = {
-  newsSources: ['Rahul', 'Rex', 'Ray', 'Kai', 'Tyson', 'Ash', 'Mitsy', 'Brock', 'Pikachu', 'Maxx', 'Binny', 'Roger'],
+  newsSources: [],
 };
 
 export default Select;

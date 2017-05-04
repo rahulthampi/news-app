@@ -1,24 +1,31 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import './styles/Sidebar.scss';
 
 class Sidebar extends Component {
   render() {
+    const { newsCategories, onSelect, currentNewsCategory } = this.props;
+    const categories = newsCategories.map(category => (
+      <li key={category} className={(category === currentNewsCategory) ? 'selected' : ''}>
+        <button onClick={e => onSelect(category, e)}>{category}</button>
+      </li>
+    ));
+
     return (
       <div className="sidebar-nav">
         <ul>
-          <a href=""><li><span>General</span></li></a>
-          <a href=""><li><span>Technology</span></li></a>
-          <a href=""><li><span>Sport</span></li></a>
-          <a href=""><li><span>Business</span></li></a>
-          <a href=""><li><span>Entertainment</span></li></a>
-          <a href=""><li><span>Gaming</span></li></a>
-          <a href=""><li><span>Music</span></li></a>
-          <a href=""><li><span>Science & Nature</span></li></a>
+          {categories}
         </ul>
       </div>
     );
   }
 }
+
+Sidebar.propTypes = {
+  newsCategories: PropTypes.array.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  currentNewsCategory: PropTypes.string.isRequired,
+};
 
 export default Sidebar;

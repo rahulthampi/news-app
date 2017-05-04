@@ -1,16 +1,19 @@
-const SOURCES_API_ENDPOINT = 'https://newsapi.org/v1/sources';
+import _ from 'lodash';
 
-const getNewsResources = () => fetch(SOURCES_API_ENDPOINT)
+const SOURCES_API_ENDPOINT = 'https://newsapi.org/v1/sources?language=en';
+const fetchParams = {
+  method: 'GET',
+};
+
+const getNewsResources = () => fetch(SOURCES_API_ENDPOINT, fetchParams)
   .then(response => response.json())
-  .then(json => json.sources.map(
-    ({ id, name, description, category, sortBysAvailable }) => ({
+  .then(json => _.groupBy(json.sources.map(
+    ({ id, name, description, category }) => ({
       id,
       name,
       description,
       category,
-      sortBysAvailable,
-    }),
-  ))
+    })), 'category'))
   .catch(error => ({
     status: 200,
     message: error.message,

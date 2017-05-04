@@ -1,4 +1,3 @@
-// For this demo, we are using the UMD build of react-router-dom
 import React from 'react';
 import {
   BrowserRouter,

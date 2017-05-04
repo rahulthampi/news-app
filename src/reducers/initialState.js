@@ -1,3 +1,6 @@
 export default {
-  sources: [],
+  sources: {},
+  categories: [],
+  currentNewsCategory: '',
+  currentNewsSource: '',
 };
