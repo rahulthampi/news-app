@@ -26,22 +26,30 @@ class News extends Component {
   }
 
   selectCategory = (selectedCategory) => {
-    this.props.dispatch(
-      setCurrentNewsCategory(selectedCategory, this.props.sources[selectedCategory][0].id),
+    const { dispatch, sources } = this.props;
+    const defaultNewsSource = sources[selectedCategory][0].id;
+
+    dispatch(
+      setCurrentNewsCategory(selectedCategory, defaultNewsSource),
     );
-    // this.selectSource(this.props.sources[selectedCategory][0].id);
-    // console.log(this.props.sources[selectedCategory][0].id);
   }
 
   render = () => {
-    const { categories, sources, currentNewsCategory, defaultNewsCategory } = this.props;
+    const {
+      categories,
+      sources,
+      currentNewsCategory,
+      defaultNewsCategory,
+    } = this.props;
     const sidebarProps = {
       newsCategories: categories,
       onSelect: this.selectCategory,
-      currentNewsCategory: (currentNewsCategory !== '') ? currentNewsCategory : defaultNewsCategory,
+      currentNewsCategory: (currentNewsCategory !== '') ?
+        currentNewsCategory : defaultNewsCategory,
     };
     const selectProps = {
-      newsSources: (currentNewsCategory !== '') ? sources[currentNewsCategory] : sources[defaultNewsCategory],
+      newsSources: (currentNewsCategory !== '') ?
+        sources[currentNewsCategory] : sources[defaultNewsCategory],
       onChangeHandler: this.selectSource,
     };
 
