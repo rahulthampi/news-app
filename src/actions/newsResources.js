@@ -9,10 +9,23 @@ export const receivedNewsSources = sources => ({
   sources,
 });
 
-export const changedNewsSource = () => ({
-  type: actions.CHANGED_NEWS_SOURCE,
+export const setNewsCategories = categories => ({
+  type: actions.SET_NEWS_CATEGORIES,
+  categories,
 });
 
-export const selectedNewsSource = () => ({
-  type: actions.SELECTED_NEWS_SOURCE,
+export const setDefaultCategory = defaultNewsCategory => ({
+  type: actions.SET_DEFAULT_CATEGORY,
+  defaultNewsCategory,
+});
+
+export const setCurrentNewsCategory = (selectedCategory, defaultNewsSource) => ({
+  type: actions.SET_CURRENT_NEWS_CATEGORY,
+  selectedCategory,
+  defaultNewsSource,
+});
+
+export const setCurrentNewsSource = selectedSource => ({
+  type: actions.SET_CURRENT_NEWS_SOURCE,
+  selectedSource,
 });

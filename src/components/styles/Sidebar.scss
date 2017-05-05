@@ -9,7 +9,18 @@
     li{
       border-bottom: 1px solid #ececec;
       &.selected{
-        border-right: 5px solid darkturquoise;
+        background: #e4e4e4;
+        border-right: 3px solid darkturquoise;
+        &:hover{
+          background: #e4e4e4;
+        }
+        button{
+          cursor: default;
+          color: #444;
+        }
+      }
+      &:hover{
+        background: #ececec;
       }
       button{
         text-align: left;
@@ -17,9 +28,10 @@
         width: 100%;
         font-size: 14px;
         padding: 10px 15px;
-        color: #444;
+        color: #777;
         background: transparent;
         border: 0;
+        cursor: pointer;
         &:focus{
           outline: none;
         }

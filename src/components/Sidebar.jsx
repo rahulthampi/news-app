@@ -8,7 +8,11 @@ class Sidebar extends Component {
     const { newsCategories, onSelect, currentNewsCategory } = this.props;
     const categories = newsCategories.map(category => (
       <li key={category} className={(category === currentNewsCategory) ? 'selected' : ''}>
-        <button onClick={e => onSelect(category, e)}>{category}</button>
+        <button
+          onClick={(category !== currentNewsCategory) && (e => onSelect(category, e))}
+        >
+          {category}
+        </button>
       </li>
     ));
 

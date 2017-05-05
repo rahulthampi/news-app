@@ -5,34 +5,44 @@ import { connect } from 'react-redux';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import Select from '../components/Select';
-import { requestNewsSources } from '../actions/newsResources';
+import {
+  requestNewsSources,
+  setCurrentNewsSource,
+  setCurrentNewsCategory,
+} from '../actions/newsResources';
 import '../styles/main.scss';
 
 class News extends Component {
   componentDidMount = () => {
-    this.props.dispatch(requestNewsSources());
+    this.props.dispatch(
+      requestNewsSources(),
+    );
   }
 
-  onSourceSelect = (selectedSource) => {
-    // Dispatch selected source action
-    console.log(selectedSource);
+  selectSource = (selectedSource) => {
+    this.props.dispatch(
+      setCurrentNewsSource(selectedSource),
+    );
   }
 
-  onCategorySelect = (selectedCategory) => {
-    // Dispatch selected category action
-    console.log(selectedCategory);
+  selectCategory = (selectedCategory) => {
+    this.props.dispatch(
+      setCurrentNewsCategory(selectedCategory, this.props.sources[selectedCategory][0].id),
+    );
+    // this.selectSource(this.props.sources[selectedCategory][0].id);
+    // console.log(this.props.sources[selectedCategory][0].id);
   }
 
-  render() {
-    const { categories, sources, currentNewsCategory } = this.props;
+  render = () => {
+    const { categories, sources, currentNewsCategory, defaultNewsCategory } = this.props;
     const sidebarProps = {
       newsCategories: categories,
-      onSelect: this.onCategorySelect,
-      currentNewsCategory,
+      onSelect: this.selectCategory,
+      currentNewsCategory: (currentNewsCategory !== '') ? currentNewsCategory : defaultNewsCategory,
     };
     const selectProps = {
-      newsSources: (currentNewsCategory !== '') ? sources[currentNewsCategory] : sources[categories[0]],
-      onChangeHandler: this.onSourceSelect,
+      newsSources: (currentNewsCategory !== '') ? sources[currentNewsCategory] : sources[defaultNewsCategory],
+      onChangeHandler: this.selectSource,
     };
 
     return (
@@ -55,6 +65,7 @@ const mapStateToProps = (state) => {
     categories,
     currentNewsCategory,
     currentNewsSource,
+    defaultNewsCategory,
   } = state;
 
   return {
@@ -62,6 +73,7 @@ const mapStateToProps = (state) => {
     categories,
     currentNewsCategory,
     currentNewsSource,
+    defaultNewsCategory,
   };
 };
 
@@ -70,6 +82,7 @@ News.propTypes = {
   categories: PropTypes.array.isRequired,
   sources: PropTypes.object.isRequired,
   currentNewsCategory: PropTypes.string.isRequired,
+  defaultNewsCategory: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps)(News);
