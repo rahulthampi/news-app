@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import './styles/Select.scss';
+
 class Select extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +26,7 @@ class Select extends Component {
     ));
 
     return (
-      <div>
+      <div className="select-wrapper">
         <select name="" id="" value={this.state.value} onChange={this.handleChange}>
           {Options}
         </select>

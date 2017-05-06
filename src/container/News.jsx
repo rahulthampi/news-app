@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import Select from '../components/Select';
+import Article from '../components/Article';
 import {
   requestNewsSources,
   setCurrentNewsSource,
@@ -52,6 +53,9 @@ class News extends Component {
         sources[currentNewsCategory] : sources[defaultNewsCategory],
       onChangeHandler: this.selectSource,
     };
+    const articleProps = {
+      newsArticles: [],
+    };
 
     return (
       <div>
@@ -60,6 +64,7 @@ class News extends Component {
           <Sidebar {...sidebarProps} />
           <div className="news-wrapper">
             <Select {...selectProps} />
+            <Article {...articleProps} />
           </div>
         </div>
       </div>
