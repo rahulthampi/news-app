@@ -4,4 +4,5 @@ export default {
   defaultNewsCategory: '',
   currentNewsCategory: '',
   currentNewsSource: '',
+  newsArticles: [],
 };

@@ -29,3 +29,14 @@ export const setCurrentNewsSource = selectedSource => ({
   type: actions.SET_CURRENT_NEWS_SOURCE,
   selectedSource,
 });
+
+export const requestNewsArticles = payload => ({
+  type: actions.REQUEST_NEWS_ARTICLES,
+  payload,
+});
+
+export const receivedNewsArticles = newsArticles => ({
+  type: actions.RECEIVED_NEWS_ARTICLES,
+  newsArticles,
+});
+

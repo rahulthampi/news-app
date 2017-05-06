@@ -1,6 +1,10 @@
 import { fork } from 'redux-saga/effects';
-import loadNewsResources from './sources';
+import initSources from './sources';
+import getNewsArticles from './articles';
 
 export default function* () {
-  yield fork(loadNewsResources);
+  yield [
+    fork(initSources),
+    fork(getNewsArticles),
+  ];
 }

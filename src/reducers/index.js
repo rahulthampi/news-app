@@ -32,6 +32,12 @@ const rootReducer = (state = initialState, actions) => {
         ...state,
         currentNewsSource: actions.selectedSource,
       };
+
+    case newsActions.RECEIVED_NEWS_ARTICLES:
+      return {
+        ...state,
+        newsArticles: actions.articles,
+      };
     default:
       return { ...state };
   }

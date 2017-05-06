@@ -10,6 +10,7 @@ import {
   requestNewsSources,
   setCurrentNewsSource,
   setCurrentNewsCategory,
+  requestNewsArticles,
 } from '../actions/newsResources';
 import '../styles/main.scss';
 
@@ -21,18 +22,18 @@ class News extends Component {
   }
 
   selectSource = (selectedSource) => {
-    this.props.dispatch(
-      setCurrentNewsSource(selectedSource),
-    );
+    const { dispatch } = this.props;
+
+    dispatch(setCurrentNewsSource(selectedSource));
+    dispatch(requestNewsArticles(selectedSource));
   }
 
   selectCategory = (selectedCategory) => {
     const { dispatch, sources } = this.props;
     const defaultNewsSource = sources[selectedCategory][0].id;
 
-    dispatch(
-      setCurrentNewsCategory(selectedCategory, defaultNewsSource),
-    );
+    dispatch(setCurrentNewsCategory(selectedCategory, defaultNewsSource));
+    dispatch(requestNewsArticles(defaultNewsSource));
   }
 
   render = () => {
@@ -41,6 +42,7 @@ class News extends Component {
       sources,
       currentNewsCategory,
       defaultNewsCategory,
+      newsArticles,
     } = this.props;
     const sidebarProps = {
       newsCategories: categories,
@@ -54,7 +56,7 @@ class News extends Component {
       onChangeHandler: this.selectSource,
     };
     const articleProps = {
-      newsArticles: [],
+      newsArticles,
     };
 
     return (
@@ -79,6 +81,7 @@ const mapStateToProps = (state) => {
     currentNewsCategory,
     currentNewsSource,
     defaultNewsCategory,
+    newsArticles,
   } = state;
 
   return {
@@ -87,6 +90,7 @@ const mapStateToProps = (state) => {
     currentNewsCategory,
     currentNewsSource,
     defaultNewsCategory,
+    newsArticles,
   };
 };
 
@@ -96,6 +100,7 @@ News.propTypes = {
   sources: PropTypes.object.isRequired,
   currentNewsCategory: PropTypes.string.isRequired,
   defaultNewsCategory: PropTypes.string.isRequired,
+  newsArticles: PropTypes.array.isRequired,
 };
 
 export default connect(mapStateToProps)(News);

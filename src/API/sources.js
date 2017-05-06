@@ -15,7 +15,7 @@ const getNewsResources = () => fetch(SOURCES_API_ENDPOINT, fetchParams)
       category,
     })), 'category'))
   .catch(error => ({
-    status: 200,
+    status: 400,
     message: error.message,
   }));
 

@@ -6,15 +6,10 @@ const getArticles = (selectedSource) => {
   };
 
   return fetch(ARTICLES_API_ENDPOINT, fetchParams)
-    .then((response) => {
-      console.log('response > ', response);
-      return response.json();
-    })
-    .then((json) => {
-      console.log('json > ', json);
-    })
+    .then(response => response.json())
+    .then(json => json.articles)
     .catch(error => ({
-      status: 200,
+      status: 400,
       message: error.message,
     }));
 };
