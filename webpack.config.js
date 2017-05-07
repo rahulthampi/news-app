@@ -4,7 +4,7 @@ const webpack = require('webpack');
 module.exports = {
   devtool: 'cheap-module-source-map',
 
-  entry: `${path.resolve(__dirname, 'src')}/index.jsx`,
+  entry: ['babel-polyfill', `${path.resolve(__dirname, 'src')}/index.jsx`],
 
   output: {
     path: path.resolve(__dirname, 'public', '__build__'),
@@ -38,7 +38,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loader: 'style-loader!css-loader!sass-loader',
+        loader: 'style-loader!css-loader!autoprefixer-loader!sass-loader',
       },
       {
         test: /\.css$/,
@@ -49,6 +49,13 @@ module.exports = {
 
   resolve: {
     extensions: ['.scss', '.js', '.jsx'],
+    // alias: {
+    //   './components': path.resolve(__dirname, 'src/components/'),
+    //   './containers': path.resolve(__dirname, 'src/container/'),
+    //   './styles': path.resolve(__dirname, 'src/styles/'),
+    //   './common': path.resolve(__dirname, 'src/common/'),
+    //   './utils': path.resolve(__dirname, 'src/utils/'),
+    // },
   },
 
   devServer: {

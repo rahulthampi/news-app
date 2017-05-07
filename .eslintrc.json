@@ -9,7 +9,8 @@
   "globals": {
     "document": true,
     "window": true,
-    "alert": true
+    "alert": true,
+    "fetch": true
   },
   "rules": {
     "indent": 1,
@@ -23,6 +24,12 @@
     "no-debugger": "error",
     "no-alert": "error",
     "no-console": "error",
+    "no-unused-expressions": [
+      "error",
+      {
+        "allowTernary": true
+      }
+    ],
     "import/prefer-default-export": 0,
     "react/jsx-no-bind": 1,
     "react/jsx-filename-extension": [
