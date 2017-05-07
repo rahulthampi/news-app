@@ -4,16 +4,21 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import News from '../container/News';
 
+import App from '../components/App';
+import Homepage from '../components/Homepage';
+import News from '../container/News';
+import NoPage from '../components/NoPage';
 
 const routes = () => (
   <BrowserRouter>
-    <Switch>
-      <Route exact path="/" component={News} />
-      {/* <Route path="/roster" component={Roster} />
-        <Route path="/schedule" component={Schedule} />*/}
-    </Switch>
+    <App>
+      <Switch>
+        <Route exact path="/" component={Homepage} />
+        <Route exact path="/news" component={News} />
+        <Route component={NoPage} />
+      </Switch>
+    </App>
   </BrowserRouter>
 );
 

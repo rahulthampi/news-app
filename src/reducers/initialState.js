@@ -5,4 +5,6 @@ export default {
   currentNewsCategory: '',
   currentNewsSource: '',
   newsArticles: [],
+  isLoading: false,
+  isArticlesLoading: false,
 };

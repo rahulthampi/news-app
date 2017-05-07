@@ -7,9 +7,15 @@
   flex-wrap: wrap;
   justify-content: space-between;
   box-sizing: border-box;
+  flex: 1;
+  &.isArticlesLoading{
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
   .article-wrapper{
-    flex-basis: 30%;
-    max-width: 30%;
+    flex-basis: 22%;
+    max-width: 22%;
     padding: 15px;
     a{
       height: 100%;

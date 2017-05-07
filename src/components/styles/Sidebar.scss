@@ -1,9 +1,12 @@
 .sidebar-nav{
-  height: 100vh;
-  max-width: 250px;
   background: whitesmoke;
   flex: 1;
+  max-width: 250px;
   ul{
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    max-width: 250px;
     margin: 0;
     padding: 0;
     list-style: none;

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { ChasingDots } from 'better-react-spinkit';
 
-import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import Select from '../components/Select';
 import Article from '../components/Article';
@@ -15,7 +15,7 @@ import {
 import '../styles/main.scss';
 
 class News extends Component {
-  componentDidMount = () => {
+  componentWillMount = () => {
     this.props.dispatch(
       requestNewsSources(),
     );
@@ -37,12 +37,23 @@ class News extends Component {
   }
 
   render = () => {
+    const { isLoading } = this.props;
+
+    if (isLoading) {
+      return (
+        <div className="content-wrapper isLoading">
+          <ChasingDots size={50} color="#999" />
+        </div>
+      );
+    }
+
     const {
       categories,
       sources,
       currentNewsCategory,
       defaultNewsCategory,
       newsArticles,
+      isArticlesLoading,
     } = this.props;
     const sidebarProps = {
       newsCategories: categories,
@@ -57,42 +68,20 @@ class News extends Component {
     };
     const articleProps = {
       newsArticles,
+      isArticlesLoading: !isLoading && isArticlesLoading,
     };
 
     return (
-      <div>
-        <Navbar />
-        <div className="content-wrapper">
-          <Sidebar {...sidebarProps} />
-          <div className="news-wrapper">
-            <Select {...selectProps} />
-            <Article {...articleProps} />
-          </div>
+      <div className="content-wrapper">
+        <Sidebar {...sidebarProps} />
+        <div className="news-wrapper">
+          <Select {...selectProps} />
+          <Article {...articleProps} />
         </div>
       </div>
     );
   }
 }
-
-const mapStateToProps = (state) => {
-  const {
-     sources,
-    categories,
-    currentNewsCategory,
-    currentNewsSource,
-    defaultNewsCategory,
-    newsArticles,
-  } = state;
-
-  return {
-    sources,
-    categories,
-    currentNewsCategory,
-    currentNewsSource,
-    defaultNewsCategory,
-    newsArticles,
-  };
-};
 
 News.propTypes = {
   dispatch: PropTypes.func.isRequired,
@@ -101,6 +90,10 @@ News.propTypes = {
   currentNewsCategory: PropTypes.string.isRequired,
   defaultNewsCategory: PropTypes.string.isRequired,
   newsArticles: PropTypes.array.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  isArticlesLoading: PropTypes.bool.isRequired,
 };
+
+const mapStateToProps = state => ({ ...state });
 
 export default connect(mapStateToProps)(News);

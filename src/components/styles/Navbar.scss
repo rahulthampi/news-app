@@ -4,9 +4,14 @@
   align-items: center;
   background: darkturquoise;
   height: 45px;
-  .app-name{
-    color: white;
-    font-size: 18px;
-    font-weight: 500;
+  position: fixed;
+  width: 100%;
+  a{
+    text-decoration: none;
+    .app-name{
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
+    }
   }
 }

@@ -26,7 +26,7 @@ class Select extends Component {
     ));
 
     return (
-      <div className="select-wrapper">
+      <div className="filter-wrapper">
         <select name="" id="" value={this.state.value} onChange={this.handleChange}>
           {Options}
         </select>

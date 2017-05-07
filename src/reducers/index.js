@@ -4,11 +4,15 @@ import * as newsActions from '../constants';
 const rootReducer = (state = initialState, actions) => {
   switch (actions.type) {
     case newsActions.REQUEST_NEWS_SOURCES:
-      return { ...state };
+      return {
+        ...state,
+        isLoading: true,
+      };
     case newsActions.RECEIVED_NEWS_SOURCES:
       return {
         ...state,
         sources: actions.sources,
+        isLoading: false,
       };
     case newsActions.SET_NEWS_CATEGORIES:
       return {
@@ -33,10 +37,16 @@ const rootReducer = (state = initialState, actions) => {
         currentNewsSource: actions.selectedSource,
       };
 
+    case newsActions.REQUEST_NEWS_ARTICLES:
+      return {
+        ...state,
+        isArticlesLoading: true,
+      };
     case newsActions.RECEIVED_NEWS_ARTICLES:
       return {
         ...state,
         newsArticles: actions.articles,
+        isArticlesLoading: false,
       };
     default:
       return { ...state };
