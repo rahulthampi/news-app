@@ -1,4 +1,6 @@
-export default {
+import { Map } from 'immutable';
+
+const initialState = Map({
   sources: {},
   categories: [],
   defaultNewsCategory: '',
@@ -7,4 +9,6 @@ export default {
   newsArticles: [],
   isLoading: false,
   isArticlesLoading: false,
-};
+});
+
+export default initialState;

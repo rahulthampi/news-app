@@ -37,7 +37,15 @@ class News extends Component {
   }
 
   render = () => {
-    const { isLoading } = this.props;
+    const {
+      categories,
+      sources,
+      currentNewsCategory,
+      defaultNewsCategory,
+      newsArticles,
+      isLoading,
+      isArticlesLoading,
+    } = this.props;
 
     if (isLoading) {
       return (
@@ -47,14 +55,6 @@ class News extends Component {
       );
     }
 
-    const {
-      categories,
-      sources,
-      currentNewsCategory,
-      defaultNewsCategory,
-      newsArticles,
-      isArticlesLoading,
-    } = this.props;
     const sidebarProps = {
       newsCategories: categories,
       onSelect: this.selectCategory,
@@ -94,6 +94,15 @@ News.propTypes = {
   isArticlesLoading: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = state => ({ ...state });
+const mapStateToProps = state => ({
+  sources: state.get('sources'),
+  categories: state.get('categories'),
+  defaultNewsCategory: state.get('defaultNewsCategory'),
+  currentNewsCategory: state.get('currentNewsCategory'),
+  currentNewsSource: state.get('currentNewsSource'),
+  newsArticles: state.get('newsArticles'),
+  isLoading: state.get('isLoading'),
+  isArticlesLoading: state.get('isArticlesLoading'),
+});
 
 export default connect(mapStateToProps)(News);
