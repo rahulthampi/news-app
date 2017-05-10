@@ -12,6 +12,16 @@ import {
   setCurrentNewsCategory,
   requestNewsArticles,
 } from '../actions/newsResources';
+import {
+  getNewsCategories,
+  getNewsSources,
+  getDefaultNewsCategory,
+  getCurrentNewsCategory,
+  getCurrentNewsSource,
+  getNewsArticles,
+  getIsNewsLoading,
+  getIsArticlesLoading,
+} from '../selectors';
 import '../styles/main.scss';
 
 class News extends Component {
@@ -95,14 +105,14 @@ News.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  sources: state.get('sources'),
-  categories: state.get('categories'),
-  defaultNewsCategory: state.get('defaultNewsCategory'),
-  currentNewsCategory: state.get('currentNewsCategory'),
-  currentNewsSource: state.get('currentNewsSource'),
-  newsArticles: state.get('newsArticles'),
-  isLoading: state.get('isLoading'),
-  isArticlesLoading: state.get('isArticlesLoading'),
+  sources: getNewsSources(state),
+  categories: getNewsCategories(state),
+  defaultNewsCategory: getDefaultNewsCategory(state),
+  currentNewsCategory: getCurrentNewsCategory(state),
+  currentNewsSource: getCurrentNewsSource(state),
+  newsArticles: getNewsArticles(state),
+  isLoading: getIsNewsLoading(state),
+  isArticlesLoading: getIsArticlesLoading(state),
 });
 
 export default connect(mapStateToProps)(News);
