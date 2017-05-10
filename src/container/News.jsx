@@ -12,6 +12,16 @@ import {
   setCurrentNewsCategory,
   requestNewsArticles,
 } from '../actions/newsResources';
+import {
+  getNewsCategories,
+  getNewsSources,
+  getDefaultNewsCategory,
+  getCurrentNewsCategory,
+  getCurrentNewsSource,
+  getNewsArticles,
+  getIsNewsLoading,
+  getIsArticlesLoading,
+} from '../selectors';
 import '../styles/main.scss';
 
 class News extends Component {
@@ -37,7 +47,15 @@ class News extends Component {
   }
 
   render = () => {
-    const { isLoading } = this.props;
+    const {
+      categories,
+      sources,
+      currentNewsCategory,
+      defaultNewsCategory,
+      newsArticles,
+      isLoading,
+      isArticlesLoading,
+    } = this.props;
 
     if (isLoading) {
       return (
@@ -47,14 +65,6 @@ class News extends Component {
       );
     }
 
-    const {
-      categories,
-      sources,
-      currentNewsCategory,
-      defaultNewsCategory,
-      newsArticles,
-      isArticlesLoading,
-    } = this.props;
     const sidebarProps = {
       newsCategories: categories,
       onSelect: this.selectCategory,
@@ -94,6 +104,15 @@ News.propTypes = {
   isArticlesLoading: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = state => ({ ...state });
+const mapStateToProps = state => ({
+  sources: getNewsSources(state),
+  categories: getNewsCategories(state),
+  defaultNewsCategory: getDefaultNewsCategory(state),
+  currentNewsCategory: getCurrentNewsCategory(state),
+  currentNewsSource: getCurrentNewsSource(state),
+  newsArticles: getNewsArticles(state),
+  isLoading: getIsNewsLoading(state),
+  isArticlesLoading: getIsArticlesLoading(state),
+});
 
 export default connect(mapStateToProps)(News);
